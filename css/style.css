@@ -1,0 +1,62 @@
+body{
+	margin: 0 auto;
+	background-image: url("../img/CSbuilding.png");
+	background-repeat: repeat;
+	background-size: 100% 720px;
+}
+
+.container{
+	width: 700px;
+	height: 550px;
+	text-align: center;
+	margin: 0 auto;
+	background-color: rgba(44, 62, 80,0.7);
+	margin-top: 160px;
+}
+
+.container img{
+	width: 300px;
+	height: 150px;
+	margin-top: -80px;
+}
+
+input[type="text"],input[type="password"]{
+	margin-top: 30px;
+	height: 45px;
+	width: 300px;
+	font-size: 12px;
+	margin-bottom: 20px;
+	background-color: #fff;
+	padding-left: 40px;
+}
+
+.form-input::before{
+	content: "\f007";
+	font-family: Arial, Helvetica, sans-serif;
+	padding-left: 07px;
+	padding-top: 40px;
+	position: absolute;
+	font-size: 35px;
+	color: #2980b9; 
+}
+
+
+.form-input:nth-child(2)::before{
+	content: "\f023";
+}
+
+.text{
+	margin-top: 5px;
+    padding: 5px;
+    background-color: #F00;
+    border: 2px solid #666;
+    width: auto;
+    color: #000000;
+}
+
+.btn-login{
+	padding: 15px 25px;
+	border: none;
+	background-color: #D61111;
+	color: #fff;
+}
