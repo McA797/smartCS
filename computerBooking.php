@@ -4,14 +4,14 @@
 	<meta charset="utf-8">
 	<meta name="description" content ="Example description content">
 	<meta name ="viewport" content "width=device-width, initial-scale=1">
-	<title>Room Booking</title>
+	<title>Computer Booking</title>
 	<link rel="stylesheet" type="text/css" href="css\studentStyle.css">
 	<style>
 		table {
 		font-family: Arial, Helvetica, sans-serif;
 		border-collapse: collapse;
-		width: 60%;
-		position: absoulte;
+		width: 70%;
+		position: absoulte; 
 		}
 
 		td, th {
@@ -50,7 +50,7 @@
 
 <script>
 function myFunction() {
-  alert("Room booked!");
+  alert("Computer booked!");
 }
 </script>
 
@@ -76,28 +76,28 @@ if(!isset($_SESSION['ID']) && $_SESSION['ID'] != 2)
 $link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 //List of computers to chose from
-$roomQuery = "SELECT * FROM rooms";
-$room_result = filterTable($roomQuery);
-$roomData   = $room_result->fetch_all(MYSQLI_ASSOC);
+$computerQuery = "SELECT * FROM computers";
+$computer_result = filterTable($computerQuery);
+$computerData   = $computer_result->fetch_all(MYSQLI_ASSOC);
 
 if(!$link){
 		
 		die('Could not connect' . mysql_error());
 	}
 
-if(isset($_GET['searchRooms']))
+if(isset($_GET['searchComputers']))
 {
 	$day = $_GET['day'];
 	$time = $_GET['time'];
-	$roomName = $_GET['room'];
-		
-	$query = "SELECT * FROM room_bookings WHERE room_name LIKE '%$roomName%' AND day LIKE'%$day' AND time LIKE '%$time' AND booked = '0'";
+	$computerName = $_GET['computer'];
+	
+	$query = "SELECT * FROM computer_bookings WHERE computer_name LIKE '%$computerName%' AND day LIKE'%$day' AND time LIKE '%$time' AND booked = '0'";
 	$search_result = filterTable($query);
 	$data   = $search_result->fetch_all(MYSQLI_ASSOC);
 }
 else
 {
-	$query = "SELECT * FROM room_bookings WHERE booked = '0'";
+	$query = "SELECT * FROM computer_bookings WHERE booked = '0'";
 	$search_result = filterTable($query);
 	$data   = $search_result->fetch_all(MYSQLI_ASSOC);
 	
@@ -107,14 +107,15 @@ if(isset($_GET['booking']))
 {
 	$bookingNumber = $_GET['booking'];
 	$bookingDayVar = $_GET['bookingDay'];
-	$bookingTimeVar = $_GET['bookingTime']; 
+	$bookingTimeVar = $_GET['bookingTime'];
 	
     $username = $_SESSION['username'];
 	
-	$bookingQuery = "UPDATE room_bookings SET booked= '$username' WHERE room_bookings.room_name = '$bookingNumber' 
-	AND room_bookings.day = '$bookingDayVar' AND room_bookings.time = '$bookingTimeVar'";
+	$bookingQuery = "UPDATE computer_bookings SET booked= '$username' WHERE computer_bookings.computer_name = '$bookingNumber' 
+	AND computer_bookings.day = '$bookingDayVar' AND computer_bookings.time = '$bookingTimeVar'";
 	$setBooking = mysqli_query($link, $bookingQuery);
 	
+	//echo "<script>alert('Computer Booked!');</script>";
 	
 }
 
@@ -149,15 +150,15 @@ function filterTable($query){
 			<option value = "3-4pm"> 3-4pm </option>
 			<option value = "4-5pm"> 4-5pm </option>
 		</select>
-		<select id="Room" name="room" class="inputBox">
-			<option value = ""> All Rooms</option>
-			<option value = "Groundfloor-01"> Ground floor - 01</option>
-			<option value = "Groundfloor-03"> Ground floor - 03</option>
-			<option value = "Firstfloor-01"> First floor - 01</option>
+		<select id="Computer" name="computer" class="inputBox">
+			<option value = ""> All computers</option>
+			<?php foreach($computerData as $row) { $computername = $row['computer_name'] ?>
+			<option value = <?php echo $computername; ?> > <?php echo $row['computer_name']; ?> </option>
+			<?php } ?>			
 		</select>
 	</div>
 	<br>	
-	<input type="submit" value="Search" name="searchRooms" class="btn-search">
+	<input type="submit" value="Search" name="searchComputers" class="btn-search">
 </form>
 
 </br>
@@ -165,21 +166,21 @@ function filterTable($query){
 	<table>
 		<tr>
 			<th>ID</th>
-			<th>Room</th>
-			<th>Occupancy</th>
-			<th>Day </th>
+			<th>Computer</th>
+			<th>Model</th>
+			<th>Day</th>
 			<th>Timeslot</th>
 			<th>Book</th>
 		</tr>
 			<?php
 			foreach($data as $row)
 			{
-				$booking = $row['room_name']; $bookingDay = $row['day']; $bookingTime = $row['time'];
+				$booking = $row['computer_name']; $bookingDay = $row['day']; $bookingTime = $row['time'];
 			?>
 			<tr>
 				<td><?php echo $row['ID'] ?></td>
-				<td><?php echo $row['room_name'] ?></td>
-				<td><?php echo $row['occupancy'] ?></td>
+				<td><?php echo $row['computer_name'] ?></td>
+				<td><?php echo $row['model'] ?></td>
 				<td><?php echo $row['day'] ?></td>
 				<td><?php echo $row['time'] ?></td>
 				<form action="" method="GET">	

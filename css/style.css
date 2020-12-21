@@ -59,4 +59,5 @@ input[type="text"],input[type="password"]{
 	border: none;
 	background-color: #D61111;
 	color: #fff;
+	cursor: pointer;
 }

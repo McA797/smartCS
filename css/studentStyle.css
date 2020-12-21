@@ -9,10 +9,96 @@ h1 {
   text-align: center;
 }
 
+
+header {
+    background-color: rgba(44, 62, 80,0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6%;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 15px 0 black;
+}
+
+header * {
+    display: inline;
+}
+
+header li {
+    margin: 20px;
+}
+
+header li a {
+    color: #D61111;
+    text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;	
+	padding: 11px 16px;
+}
+
+.white{
+	color: white;
+}
+
+
+header li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #050505;
+}
+
+.container{
+	width: 700px;
+	height: 350px;
+	text-align: center;
+	margin: 0 auto;
+	background-color: rgba(44, 62, 80,0.7);
+	margin-top: 70px;
+}
+
 .impact{
 	font-size:20px;
 	font-family: Arial, Helvetica, sans-serif;	
 	 text-align: center;
+	
+}
+
+.wave{
+	font-size:20px;
+	font-family: Arial, Helvetica, sans-serif;	
+	 text-align: center;
+	 color:#c71104;
+}
+
+
+.numberStyle{
+	font-size:12px;
+	font-family: Arial, Helvetica, sans-serif;	
+	text-align: center;
+	color:#c71104;
+	position: absolute;
+	left: 60%;
+	top: 2%;
+}
+
+.covid{
+	position: absolute;
+	left: 25%;
+	top:40%;
+	width: 50%;
+	height: 50%;
+	
+}
+
+.logo{
+	position: absolute;
+	left: 88%;
+	top:0%;
+	width: 12%;
+	height: 12%;
 }
 
 .inputBox{
@@ -23,17 +109,18 @@ h1 {
 	width: 11%;
 }
 
-.btn-login{
+.btn-search{
 	padding: 15px 25px;
 	border: none;
 	background-color: #D61111;
 	color: #fff;
+	cursor: pointer;
 }
 
-.button {
+.scan {
   display: inline-block;
   border-radius: 4px;
-  background-color: #043691;
+  background-color: #D61111;
   border: none;
   color: #FFFFFF;
   text-align: center;
@@ -43,9 +130,58 @@ h1 {
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
+}
+
+.scan span {
+  cursor: pointer;
+  display: inline-block;
   position: relative;
-  left: 520px;
-  top: 70px;
+  transition: 0.5s;
+}
+
+.scan span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.scan:hover span {
+  padding-right: 25px;
+}
+
+.scan:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.scan1 {
+	position: absolute;
+	left: 30%;
+	top: 35%;	
+}
+
+.scan2 {
+	position: absolute;
+	left: 55%;
+	top: 35%;	
+}
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #04298F;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
 }
 
 .button span {
@@ -72,3 +208,22 @@ h1 {
   opacity: 1;
   right: 0;
 }
+
+.button1 {
+position: absolute;
+left: 42%;
+top: 65%;	
+}
+
+.button2 {
+position: absolute;
+left: 42%;
+top: 45%;	
+}
+
+.button3 {
+position: absolute;
+left: 42%;
+top: 25%;	
+}
+
